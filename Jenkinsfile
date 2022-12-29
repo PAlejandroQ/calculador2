@@ -26,6 +26,7 @@ pipeline {
                     sh "./gradlew checkstyleMain" 
                } 
           }
+	}
 	  post {
                 always {
                     mail to: 'ppaabblloo4283@gmail.com',
@@ -38,5 +39,5 @@ pipeline {
                     message:"The pipeline ${currentBuild.fullDisplayName} failed."
                 }
            } 
-     } 
+      
 } 
