@@ -25,6 +25,18 @@ pipeline {
                steps { 
                     sh "./gradlew checkstyleMain" 
                } 
-          } 
+          }
+	  post {
+                always {
+                    mail to: 'ppaabblloo4283@gmail.com',
+                    subject:"Completed Pipeline: ${currentBuild.fullDisplayName}",
+                    body:"Your build completed, please check: ${env.BUILD_URL}"
+                }
+                failure {
+                    slackSend channel: '#sprint',
+                    color: 'danger',
+                    message:"The pipeline ${currentBuild.fullDisplayName} failed."
+                }
+           } 
      } 
 } 
