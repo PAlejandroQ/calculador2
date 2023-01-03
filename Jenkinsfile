@@ -42,7 +42,7 @@ pipeline {
 		}
 		stage("Docker build") {
 			steps {
-			sh "docker build -t alejandroqo/calculator ."
+			sh "docker build -t alejandroqo/calculador ."
 
 			}
 		}
@@ -53,7 +53,7 @@ pipeline {
 		}
 		stage("Deploy to staging") {
 			steps {
-				sh "docker run -d --rm -p 8765:8080 --name calculador alejandroqo/calculator"
+				sh "docker run -d --rm -p 8765:8080 --name calculador alejandroqo/calculador"
 			}
 		}
 		stage("Acceptance test") {
