@@ -1,4 +1,4 @@
-package com.kapumota.calculador;
+package com.alejandroqo.calculador;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

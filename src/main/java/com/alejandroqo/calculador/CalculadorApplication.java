@@ -1,4 +1,4 @@
-package com.kapumota.calculador;
+package com.alejandroqo.calculador;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

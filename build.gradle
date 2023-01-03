@@ -6,7 +6,7 @@ plugins {
 	id 'checkstyle'
 }
 
-group = 'com.kapumota'
+group = 'com.alejandroqo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 

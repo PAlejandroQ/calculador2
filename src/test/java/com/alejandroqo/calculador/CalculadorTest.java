@@ -1,4 +1,4 @@
-package com.kapumota.calculador;
+package com.alejandroqo.calculador;
 
 import org.junit.Test; 
 import static org.junit.Assert.assertEquals; 

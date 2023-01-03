@@ -1,4 +1,4 @@
-package com.kapumota.calculador;
+package com.alejandroqo.calculador;
 import org.springframework.stereotype.Service; 
  
 @Service 
