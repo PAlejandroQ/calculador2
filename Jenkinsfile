@@ -68,8 +68,9 @@ pipeline {
 		post {
 			always {
 			    mail to: 'ppaabblloo4283@gmail.com',
-			    subject:"Completed Pipeline: ${currentBuild.fullDisplayName}",
-			    body:"Your build completed, please check: ${env.BUILD_URL}"
+			    	subject:"Completed Pipeline: ${currentBuild.fullDisplayName}",
+			    	body:"Your build completed, please check: ${env.BUILD_URL}"
+			    sh "docker stop calculator"
 			}
 			failure {
 			    slackSend channel: '#sprint',
@@ -77,8 +78,5 @@ pipeline {
 			    message:"The pipeline ${currentBuild.fullDisplayName} failed."
 			}
 		
-			always {
-			sh "docker stop calculator"
-			}
 		}
 	}
