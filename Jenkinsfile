@@ -70,7 +70,7 @@ pipeline {
 			    mail to: 'ppaabblloo4283@gmail.com',
 			    	subject:"Completed Pipeline: ${currentBuild.fullDisplayName}",
 			    	body:"Your build completed, please check: ${env.BUILD_URL}"
-			    sh "docker stop calculator"
+			    sh "docker stop alejandroqo/calculador"
 			}
 			failure {
 			    slackSend channel: '#sprint',
