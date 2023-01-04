@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: calculador
-          image: alejandroqo/calculador
+          image: alejandroqo/calculador:caching
           ports:
           - containerPort: 8080
           readinessProbe:
