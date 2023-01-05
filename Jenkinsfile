@@ -42,18 +42,18 @@ pipeline {
 		}
 		stage("Docker build") {
 			steps {
-			sh "docker build -t alejandroqo/calculador ."
+			sh "docker build -t alejandroqo/calculador:${BUILD_TIMESTAMP} ."
 
 			}
 		}
 		stage("Docker push") {
 			steps {
-				sh "docker push alejandroqo/calculador"
+				sh "docker push alejandroqo/calculador:${BUILD_TIMESTAMP}"
 			}
 		}
 		stage("Deploy to staging") {
 			steps {
-				sh "docker run -d --rm -p 8765:8080 --name calculador alejandroqo/calculador"
+				sh "docker run -d --rm -p 8765:8080 --name calculador alejandroqo/calculador:${BUILD_TIMESTAMP}"
 			}
 		}
 		stage("Acceptance test") {
