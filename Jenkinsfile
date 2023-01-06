@@ -51,18 +51,42 @@ pipeline {
 				sh "docker push alejandroqo/calculador:${BUILD_TIMESTAMP}"
 			}
 		}
+		stage("Update version") {
+               		steps {
+                    		sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' deployment.yaml"
+               		}
+          	}
 		stage("Deploy to staging") {
 			steps {
-				sh "docker run -d --rm -p 8765:8080 --name calculador alejandroqo/calculador:${BUILD_TIMESTAMP}"
+				//sh "docker run -d --rm -p 8765:8080 --name calculador alejandroqo/calculador:${BUILD_TIMESTAMP}
+			sh "kubectl config use-context staging"
+			sh "kubectl apply -f hazelcast.yaml"
+			sh "kubectl apply -f deployment.yaml"
+			sh "kubectl apply -f service.yaml"
 			}
 		}
 		stage("Acceptance test") {
 			steps {
 				sleep 60
-				sh "./gradlew acceptanceTest -D calculador.url=http://localhost:8765"
+				//sh "./gradlew acceptanceTest -D calculador.url=http://localhost:8765"
+				sh "chmod +x acceptance-test.sh && ./acceptance-test.sh"
 
 			}
 		}
+		stage("Release") {
+               		steps {
+                    		sh "kubectl config use-context production"
+                    		sh "kubectl apply -f hazelcast.yaml"
+                    		sh "kubectl apply -f deployment.yaml"
+				sh "kubectl apply -f service.yaml"
+               		}
+          	}
+		stage("Smoke test") {
+              		steps {
+                  		sleep 60
+                  		sh "chmod +x smoke-test.sh && ./smoke-test.sh"
+              		}
+          	}
 	}
 		
 		post {
